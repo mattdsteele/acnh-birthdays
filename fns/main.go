@@ -2,7 +2,6 @@ package acnh
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"strings"
 	"time"
@@ -41,19 +40,6 @@ func addBirthday(cal *ics.Calendar, name string, villagers *VillagerInfo) error 
 	newEvent(cal, name, days[1], days[0])
 	return nil
 }
-func mainx() {
-	cal := ics.NewCalendar()
-	cal.SetName("Foo bar baz")
-	cal.SetProductId("Oh yeah!")
-	villagersList := villagers()
-	addBirthday(cal, "ellie", &villagersList)
-	addBirthday(cal, "spike", &villagersList)
-	addBirthday(cal, "canberra", &villagersList)
-	fmt.Println(cal.Serialize())
-
-	// save file
-	ioutil.WriteFile("birthdays.ics", []byte(cal.Serialize()), 0644)
-}
 
 func AcnhGopher(w http.ResponseWriter, r *http.Request) {
 	// verify a villagers param
@@ -65,8 +51,8 @@ func AcnhGopher(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Add("Content-Type", "text/calendar")
 	cal := ics.NewCalendar()
-	cal.SetName("Foo bar baz")
-	cal.SetProductId("Oh yeah!")
+	cal.SetName("ACNH Villager Birthdays")
+	cal.SetProductId(newUUID())
 	villagersList := villagers()
 	for _, v := range strings.Split(v, ",") {
 		err := addBirthday(cal, v, &villagersList)
