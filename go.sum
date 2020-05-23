@@ -1,0 +1,4 @@
+github.com/arran4/golang-ical v0.0.0-20200314043952-7d4940584ecd h1:Yvu285J3YTE3cCCE5rgUGB7sP988cYolf81eP2b3r3U=
+github.com/arran4/golang-ical v0.0.0-20200314043952-7d4940584ecd/go.mod h1:OvKAaLVUQD5P9ZCgnI5qbpkX8fil6yAnorhTaVZnVWk=
+github.com/google/uuid v1.1.1 h1:Gkbcsh/GbpXz7lPftLA3P6TYMwjCLYm83jiFQZF/3gY=
+github.com/google/uuid v1.1.1/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
