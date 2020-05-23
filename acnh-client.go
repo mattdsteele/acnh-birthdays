@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strings"
 )
 
 type Villager struct {
@@ -24,7 +25,7 @@ type VillagerInfo struct {
 
 func (v VillagerInfo) Villager(name string) (Villager, error) {
 	for _, v := range v.villagerData {
-		if v.Name.English == name {
+		if strings.ToLower(v.Name.English) == strings.ToLower(name) {
 			return v, nil
 		}
 	}

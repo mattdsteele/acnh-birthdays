@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
+	"net/http"
 	"strings"
 	"time"
 
@@ -22,8 +24,8 @@ func newUUID() string {
 }
 func newEvent(cal *ics.Calendar, name, monthS, dayS string) {
 	e := cal.AddEvent(newUUID())
-	e.SetDescription(fmt.Sprintf("%s's birthday", name))
-	e.SetSummary(fmt.Sprintf("%s's birthday", name))
+	e.SetDescription(fmt.Sprintf("%s's birthday", strings.Title(name)))
+	e.SetSummary(fmt.Sprintf("%s's birthday", strings.Title(name)))
 	today, _ := time.Parse("2006-1-2", "2020-"+monthS+"-"+dayS)
 	e.SetAllDayEndAt(today.AddDate(0, 0, 1))
 	e.SetAllDayStartAt(today)
@@ -36,16 +38,37 @@ func addBirthday(cal *ics.Calendar, name string, villagers *VillagerInfo) {
 	days := strings.Split(b, "/")
 	newEvent(cal, name, days[1], days[0])
 }
-func main() {
+func mainx() {
 	cal := ics.NewCalendar()
 	cal.SetName("Foo bar baz")
 	cal.SetProductId("Oh yeah!")
 	villagersList := villagers()
-	addBirthday(cal, "Ellie", &villagersList)
-	addBirthday(cal, "Spike", &villagersList)
-	addBirthday(cal, "Canberra", &villagersList)
+	addBirthday(cal, "ellie", &villagersList)
+	addBirthday(cal, "spike", &villagersList)
+	addBirthday(cal, "canberra", &villagersList)
 	fmt.Println(cal.Serialize())
 
 	// save file
 	ioutil.WriteFile("birthdays.ics", []byte(cal.Serialize()), 0644)
+}
+
+func main() {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Content-Type", "text/calendar")
+		cal := ics.NewCalendar()
+		cal.SetName("Foo bar baz")
+		cal.SetProductId("Oh yeah!")
+		villagersList := villagers()
+		addBirthday(cal, "ellie", &villagersList)
+		addBirthday(cal, "spike", &villagersList)
+		addBirthday(cal, "canberra", &villagersList)
+		fmt.Fprintf(w, cal.Serialize())
+	})
+
+	http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Hi")
+	})
+
+	log.Fatal(http.ListenAndServe(":8081", nil))
+
 }
