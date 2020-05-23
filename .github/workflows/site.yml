@@ -26,4 +26,4 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{secrets.NETLIFY_ACCESS_TOKEN}}
           NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE}}
         with:
-          args: 'deploy -p -d build'
+          args: 'deploy -p -d site/build'
