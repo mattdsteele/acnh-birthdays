@@ -1,9 +1,8 @@
-package main
+package acnh
 
 import (
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -32,11 +31,15 @@ func newEvent(cal *ics.Calendar, name, monthS, dayS string) {
 	e.SetDtStampTime(today)
 	e.AddProperty(ics.ComponentProperty("RRULE"), annualEvent(monthS, dayS))
 }
-func addBirthday(cal *ics.Calendar, name string, villagers *VillagerInfo) {
-	ellie, _ := villagers.Villager(name)
-	b := ellie.Birthday
+func addBirthday(cal *ics.Calendar, name string, villagers *VillagerInfo) error {
+	villager, err := villagers.Villager(name)
+	if err != nil {
+		return err
+	}
+	b := villager.Birthday
 	days := strings.Split(b, "/")
 	newEvent(cal, name, days[1], days[0])
+	return nil
 }
 func mainx() {
 	cal := ics.NewCalendar()
@@ -52,23 +55,25 @@ func mainx() {
 	ioutil.WriteFile("birthdays.ics", []byte(cal.Serialize()), 0644)
 }
 
-func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Add("Content-Type", "text/calendar")
-		cal := ics.NewCalendar()
-		cal.SetName("Foo bar baz")
-		cal.SetProductId("Oh yeah!")
-		villagersList := villagers()
-		addBirthday(cal, "ellie", &villagersList)
-		addBirthday(cal, "spike", &villagersList)
-		addBirthday(cal, "canberra", &villagersList)
-		fmt.Fprintf(w, cal.Serialize())
-	})
+func AcnhGopher(w http.ResponseWriter, r *http.Request) {
+	// verify a villagers param
+	v := r.URL.Query().Get("villagers")
+	if v == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 
-	http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hi")
-	})
-
-	log.Fatal(http.ListenAndServe(":8081", nil))
-
+	w.Header().Add("Content-Type", "text/calendar")
+	cal := ics.NewCalendar()
+	cal.SetName("Foo bar baz")
+	cal.SetProductId("Oh yeah!")
+	villagersList := villagers()
+	for _, v := range strings.Split(v, ",") {
+		err := addBirthday(cal, v, &villagersList)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+	}
+	fmt.Fprintf(w, cal.Serialize())
 }

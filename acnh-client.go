@@ -1,8 +1,7 @@
-package main
+package acnh
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"net/http"
 	"strings"
@@ -29,7 +28,7 @@ func (v VillagerInfo) Villager(name string) (Villager, error) {
 			return v, nil
 		}
 	}
-	return Villager{}, errors.New("did not find")
+	return Villager{}, fmt.Errorf("could not find villager %s", name)
 }
 
 func villagers() VillagerInfo {
@@ -43,8 +42,5 @@ func villagers() VillagerInfo {
 	// f := make(Villagers)
 	json.NewDecoder(resp.Body).Decode(&Villagers)
 	vi := VillagerInfo{Villagers}
-	villagerName := "Antonio"
-	foundVillager, _ := vi.Villager(villagerName)
-	fmt.Printf("%s's birthday is %s", villagerName, foundVillager.Birthday)
 	return vi
 }
