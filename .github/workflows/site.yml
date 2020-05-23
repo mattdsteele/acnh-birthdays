@@ -1,0 +1,21 @@
+name: Netlify Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Deploy to Netlify
+        uses: 'netlify/actions/cli@master'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{secrets.NETLIFY_ACCESS_TOKEN}}
+          NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE}}
+        with:
+          args: 'deploy -p -d .'
