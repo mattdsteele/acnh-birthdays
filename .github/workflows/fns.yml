@@ -1,5 +1,8 @@
 name: gcloud
-on: [push]
+on:
+  push:
+    paths:
+      - fns/**
 
 jobs:
   deploy:
