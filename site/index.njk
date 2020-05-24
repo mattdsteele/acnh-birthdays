@@ -7,7 +7,18 @@
 </head>
 <body>
 
-<div class="calendar">
+<div class="intro">
+<h1>🎂 Villager Birthday Calendar 🎁</h1>
+<h2>Never let a villager's birthday sneak up on you again! 🎉</h2>
+<ol>
+<li>Find your villagers</li>
+<li>Tap each one</li>
+<li>Click "Subscribe" to import!</li>
+</ol>
+
+<p>Or, copy into an app: <a href="https://support.google.com/calendar/answer/37118?co=GENIE.Platform%3DDesktop&hl=en">Google Calendar</a></p>
+</div>
+<div class="calendar hidden">
 <p>
   <input type="text" class="calendar-url">
   <span class="copy">Copy</span>
@@ -55,6 +66,12 @@ const renderImg = () => {
   const url = `webcal://acnh-birthdays.steele.blue/cal?villagers=${villagers}`;
   calendarUrl.value = url;
   document.querySelector('.link a').href=url;
+  const calendarWrapper = document.querySelector('.calendar');
+  if (names.length > 0) {
+    calendarWrapper.classList.remove('hidden');
+  } else {
+    calendarWrapper.classList.add('hidden');
+  }
 }
 document.querySelector('.copy').addEventListener('click', async e => {
   const calendarUrl = document.querySelector('.calendar-url');
@@ -66,6 +83,9 @@ document.querySelector('.copy').addEventListener('click', async e => {
   position: sticky;
   top: 0;
   background: white;
+}
+.calendar p {
+  margin: 0;
 }
 .villager {
   display: flex;
@@ -85,6 +105,27 @@ document.querySelector('.copy').addEventListener('click', async e => {
 body {
   margin: auto;
   max-width: 500px;
+  border-radius: 5px;
+  background-color: white;
+}
+html {
+  background-color: #fadbff;
+}
+.intro {
+  text-align: center;
+}
+.intro ol {
+  display: inline-block;
+  text-align: left;
+}
+.hidden {
+  display: none;
+}
+.link {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  font-color: black;
 }
 </style>
   
