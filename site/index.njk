@@ -32,7 +32,7 @@
 {% for val in villagers %}
 <div class="villager" data-name="{{val.name['name-en'].toLowerCase()}}">
   <img alt="{{val.name['name-en']}}" loading="lazy" src="https://acnhapi.com/images/villagers/{{val['file-name']}}" width="250" height="250">
-  <p>{{val.name['name-en']}} - {{val['birthday-string']}}</p>
+  <p><span class="name">{{val.name['name-en']}}</span> <span class="birthdate">- {{val['birthday-string']}}</span></p>
 </div>
 {% endfor %}
 
@@ -116,6 +116,8 @@ body {
   max-width: 500px;
   border-radius: 5px;
   background-color: white;
+  /* System Fonts as used by GitHub */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 html {
   background-color: #fadbff;
@@ -134,7 +136,6 @@ html {
   text-align: center;
   font-size: 2em;
   font-weight: bold;
-  font-color: black;
 }
 header {
   display: flex;
@@ -142,6 +143,7 @@ header {
 }
 header h1 {
   flex: 1 0 auto;
+  font-size: 1.8em;
 }
 header span {
   font-size: 3em;
@@ -156,6 +158,12 @@ header span {
 }
 .copy {
   cursor: pointer;
+}
+.villager .name {
+  font-weight: bold;
+}
+.villager .birthdate {
+  color: #444;
 }
 </style>
   
