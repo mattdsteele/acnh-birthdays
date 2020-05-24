@@ -8,7 +8,11 @@
 <body>
 
 <div class="intro">
-<h1>🎂 Villager Birthday Calendar 🎁</h1>
+<header>
+  <span>🎂</span>
+  <h1>Villager Birthday Calendar</h1>
+  <span>🎁</span>
+</header>
 <h2>Never let a villager's birthday sneak up on you again! 🎉</h2>
 <ol>
 <li>Find your villagers</li>
@@ -16,7 +20,7 @@
 <li>Click "Subscribe" to import!</li>
 </ol>
 
-<p>Or, copy into an app: <a href="https://support.google.com/calendar/answer/37118?co=GENIE.Platform%3DDesktop&hl=en">Google Calendar</a></p>
+<p>Or, click "Copy" and add by URL: <a href="https://calendar.google.com/calendar/r/settings/addbyurl">Google Calendar</a></p>
 </div>
 <div class="calendar hidden">
 <p>
@@ -100,7 +104,7 @@ document.querySelector('.copy').addEventListener('click', async e => {
   width: calc(100% - 60px);
 }
 .selected {
-  background-color: #aaa;
+  background-color: #bcbcbc;
 }
 body {
   margin: auto;
@@ -126,6 +130,27 @@ html {
   font-size: 2em;
   font-weight: bold;
   font-color: black;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+header h1 {
+  flex: 1 0 auto;
+}
+header span {
+  font-size: 3em;
+}
+@media(max-width: 500px) {
+  header h1 {
+    font-size: 1.3em;
+  }
+  header span {
+    font-size: 1.7em;
+  }
+}
+.copy {
+  cursor: pointer;
 }
 </style>
   
