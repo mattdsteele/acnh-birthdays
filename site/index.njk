@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<div class="calendar">
+<p>
+  <input type="text" class="calendar-url">
+  <span class="copy">Copy</span>
+</p>
+</div>
+{% for val in villagers %}
+<div class="villager" data-name="{{val.name['name-en'].toLowerCase()}}">
+  <img loading="lazy" src="https://acnhapi.com/images/villagers/{{val['file-name']}}" width="250" height="250">
+  {{val.name['name-en']}} - {{val['birthday-string']}}
+</div>
+{% endfor %}
+
+<script>
+let names = [];
+document.querySelector('.calendar-url').addEventListener('focus', e => {
+  e.target.select();
+});
+const closest = (el, className) => {
+  if (el.classList.contains(className)) {
+    return el;
+  }
+  return closest(el.parentElement, className);
+}
+document.querySelectorAll('.villager').forEach(v => {
+  v.addEventListener('click', e => {
+    const el = closest(e.target, 'villager');
+    const name = el.dataset.name;
+    updateVillager(name);
+    renderImg();
+  });
+})
+const updateVillager = name => {
+  if (names.includes(name)) {
+    names = names.filter(n => n !== name);
+  } else {
+    names = [...names, name];
+  }
+}
+
+const renderImg = () => {
+  const calendarUrl = document.querySelector('.calendar-url');
+  const villagers = names.join(',');
+  calendarUrl.value = `webcal://acnh-birthdays.steele.blue/cal?villagers=${villagers}`;
+}
+document.querySelector('.copy').addEventListener('click', async e => {
+  const calendarUrl = document.querySelector('.calendar-url');
+  await navigator.clipboard.writeText(calendarUrl.value);
+  alert('copied to clipboard')
+})
+</script>
+<style>
+.calendar {
+  position: sticky;
+  top: 0;
+  background: white;
+}
+</style>
+  
+</body>
+
+</html>

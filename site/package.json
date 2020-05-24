@@ -1,21 +1,18 @@
 {
+  "name": "site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "snowpack dev",
-    "build": "snowpack build",
-    "test": "jest",
-    "format": "prettier --write 'src/**/*.{js,jsx}'",
-    "lint": "prettier --check 'src/**/*.{js,jsx}'"
+    "build": "eleventy",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "webDependencies": {},
-  "dependencies": {
-    "preact": "^10.4.1"
-  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "@snowpack/app-scripts-preact": "^0.7.4",
-    "@testing-library/jest-dom": "^5.5.0",
-    "@testing-library/preact": "^1.0.2",
-    "jest": "^25.4.0",
-    "prettier": "^2.0.0",
-    "snowpack": "^2.0.0-rc.4"
+    "@11ty/eleventy": "^0.11.0",
+    "flat-cache": "^2.0.1",
+    "node-fetch": "^2.6.0"
   }
 }
