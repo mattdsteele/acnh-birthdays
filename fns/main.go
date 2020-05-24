@@ -51,10 +51,10 @@ func AcnhGopher(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Add("Content-Type", "text/calendar")
 	cal := ics.NewCalendar()
-	cal.SetName("\"ACNH Villager Birthdays\"")
-	cal.SetDescription("\"ACNH Villager Birthdays\"")
-	cal.SetXWRCalName("\"ACNH Villager Birthdays\"")
-	cal.SetXWRCalDesc("\"ACNH Villager Birthdays\"")
+	cal.SetName("ACNH Villager Birthdays")
+	cal.SetDescription("ACNH Villager Birthdays")
+	cal.SetXWRCalName("ACNH Villager Birthdays")
+	cal.SetXWRCalDesc("ACNH Villager Birthdays")
 	cal.SetProductId(newUUID())
 	villagersList := villagers()
 	for _, v := range strings.Split(v, ",") {
