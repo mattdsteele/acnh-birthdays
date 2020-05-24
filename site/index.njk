@@ -37,6 +37,7 @@ document.querySelectorAll('.villager').forEach(v => {
     const el = closest(e.target, 'villager');
     const name = el.dataset.name;
     updateVillager(name);
+    el.classList.toggle('selected');
     renderImg();
   });
 })
@@ -77,6 +78,13 @@ document.querySelector('.copy').addEventListener('click', async e => {
 }
 .calendar-url {
   width: calc(100% - 60px);
+}
+.selected {
+  background-color: #aaa;
+}
+body {
+  margin: auto;
+  max-width: 500px;
 }
 </style>
   
