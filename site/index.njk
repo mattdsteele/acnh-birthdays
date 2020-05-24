@@ -31,7 +31,7 @@
 </div>
 {% for val in villagers %}
 <div class="villager" data-name="{{val.name['name-en'].toLowerCase()}}">
-  <img loading="lazy" src="https://acnhapi.com/images/villagers/{{val['file-name']}}" width="250" height="250">
+  <img alt="{{val.name['name-en']}}" loading="lazy" src="https://acnhapi.com/images/villagers/{{val['file-name']}}" width="250" height="250">
   <p>{{val.name['name-en']}} - {{val['birthday-string']}}</p>
 </div>
 {% endfor %}
