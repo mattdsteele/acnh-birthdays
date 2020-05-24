@@ -5,6 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ACNH Villager Birthdays</title>
 </head>
+<style>
+.calendar {
+  position: sticky;
+  top: 0;
+  background: white;
+}
+.calendar p {
+  margin: 0;
+}
+.villager {
+  display: flex;
+  align-items: center;
+}
+.villager img {
+  max-width: 75px;
+  max-height: 75px;
+  margin-right: 20px;
+}
+.calendar-url {
+  width: calc(100% - 60px);
+}
+.selected {
+  background-color: #bcbcbc;
+}
+body {
+  margin: auto;
+  max-width: 500px;
+  border-radius: 5px;
+  background-color: white;
+  /* System Fonts as used by GitHub */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+html {
+  background-color: #fadbff;
+}
+.intro {
+  text-align: center;
+}
+.intro ol {
+  display: inline-block;
+  text-align: left;
+}
+.hidden {
+  display: none;
+}
+.link {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+header h1 {
+  flex: 1 0 auto;
+  font-size: 1.8em;
+}
+header span {
+  font-size: 3em;
+}
+@media(max-width: 500px) {
+  header h1 {
+    font-size: 1.3em;
+  }
+  header span {
+    font-size: 1.7em;
+  }
+}
+.copy {
+  cursor: pointer;
+}
+.villager .name {
+  font-weight: bold;
+}
+.villager .birthdate {
+  color: #444;
+}
+</style>
+  
 <body>
 
 <div class="intro">
@@ -87,86 +167,6 @@ document.querySelector('.copy').addEventListener('click', async e => {
   await navigator.clipboard.writeText(calendarUrl.value);
 })
 </script>
-<style>
-.calendar {
-  position: sticky;
-  top: 0;
-  background: white;
-}
-.calendar p {
-  margin: 0;
-}
-.villager {
-  display: flex;
-  align-items: center;
-}
-.villager img {
-  max-width: 75px;
-  max-height: 75px;
-  margin-right: 20px;
-}
-.calendar-url {
-  width: calc(100% - 60px);
-}
-.selected {
-  background-color: #bcbcbc;
-}
-body {
-  margin: auto;
-  max-width: 500px;
-  border-radius: 5px;
-  background-color: white;
-  /* System Fonts as used by GitHub */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-html {
-  background-color: #fadbff;
-}
-.intro {
-  text-align: center;
-}
-.intro ol {
-  display: inline-block;
-  text-align: left;
-}
-.hidden {
-  display: none;
-}
-.link {
-  text-align: center;
-  font-size: 2em;
-  font-weight: bold;
-}
-header {
-  display: flex;
-  align-items: center;
-}
-header h1 {
-  flex: 1 0 auto;
-  font-size: 1.8em;
-}
-header span {
-  font-size: 3em;
-}
-@media(max-width: 500px) {
-  header h1 {
-    font-size: 1.3em;
-  }
-  header span {
-    font-size: 1.7em;
-  }
-}
-.copy {
-  cursor: pointer;
-}
-.villager .name {
-  font-weight: bold;
-}
-.villager .birthdate {
-  color: #444;
-}
-</style>
-  
 </body>
 
 </html>
