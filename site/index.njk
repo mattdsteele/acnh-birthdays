@@ -49,13 +49,12 @@ const updateVillager = name => {
 
 const renderImg = () => {
   const calendarUrl = document.querySelector('.calendar-url');
-  const villagers = names.join(',');
+  const villagers = encodeURIComponent(names.join(','));
   calendarUrl.value = `webcal://acnh-birthdays.steele.blue/cal?villagers=${villagers}`;
 }
 document.querySelector('.copy').addEventListener('click', async e => {
   const calendarUrl = document.querySelector('.calendar-url');
   await navigator.clipboard.writeText(calendarUrl.value);
-  alert('copied to clipboard')
 })
 </script>
 <style>
