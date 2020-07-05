@@ -12,7 +12,7 @@ const getCacheKey = () => {
   }-${date.getUTCDate()}`;
 };
 const fetchData = async () => {
-  const endpoint = 'https://acnhapi.com/villagers';
+  const endpoint = 'https://acnhapi.com/v1/villagers';
   const res = await fetch(endpoint);
   const json = await res.json();
   await mkdirp('./.cache');
