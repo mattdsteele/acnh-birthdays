@@ -35,5 +35,5 @@ module.exports = async () => {
   const unsorted = await cacheOrGet();
   return Object.keys(unsorted)
     .map((k) => unsorted[k])
-    .sort((a, b) => a.name['name-en'].localeCompare(b.name['name-en']));
+    .sort((a, b) => a.name['name-USen'].localeCompare(b.name['name-USen']));
 };
