@@ -110,9 +110,9 @@ header span {
 <p class="link"><a href="">Subscribe</a></p>
 </div>
 {% for val in villagers %}
-<div class="villager" data-name="{{val.name['name-en'].toLowerCase()}}">
-  <img alt="{{val.name['name-en']}}" loading="lazy" src="https://acnhapi.com/v1/images/villagers/{{val['file-name']}}" width="250" height="250">
-  <p><span class="name">{{val.name['name-en']}}</span> <span class="birthdate">- {{val['birthday-string']}}</span></p>
+<div class="villager" data-name="{{val.name['name-USen'].toLowerCase()}}">
+  <img alt="{{val.name['name-USen']}}" loading="lazy" src="https://acnhapi.com/v1/images/villagers/{{val['file-name']}}" width="250" height="250">
+  <p><span class="name">{{val.name['name-USen']}}</span> <span class="birthdate">- {{val['birthday-string']}}</span></p>
 </div>
 {% endfor %}
 
