@@ -42,7 +42,7 @@ func addBirthday(cal *ics.Calendar, name string, villagers *VillagerInfo) error 
 }
 
 func AcnhGopher(w http.ResponseWriter, r *http.Request) {
-	// verify a villagers param
+	// verify villagers param
 	v := r.URL.Query().Get("villagers")
 	if v == "" {
 		w.WriteHeader(http.StatusBadRequest)
