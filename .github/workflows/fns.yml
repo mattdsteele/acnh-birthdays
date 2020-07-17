@@ -16,4 +16,4 @@ jobs:
           PROJECT_ID: ${{secrets.GCLOUD_PROJECT_ID}}
           APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
         with:
-          args: functions deploy acnh-birthdays  --trigger-http  --runtime go111 --entry-point AcnhGopher --source fns
+          args: functions deploy acnh-birthdays  --trigger-http  --runtime go113 --entry-point AcnhGopher --source fns
